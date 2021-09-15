@@ -19,7 +19,7 @@ header
               li
                 span 😆
             else
-              if loggedInUser.socialOnly
+              if loggedInUser.avatarUrl.includes("github")
                 li
                   img.header__avatar(src=loggedInUser.avatarUrl)
               else
