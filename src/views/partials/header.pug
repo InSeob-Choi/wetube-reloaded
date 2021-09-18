@@ -19,12 +19,12 @@ header
               li
                 span 😆
             else
-              if loggedInUser.avatarUrl.includes("github")
+              if isHeroku
                 li
                   img.header__avatar(src=loggedInUser.avatarUrl)
               else
                 li
-                  img.header__avatar(src=loggedInUser.avatarUrl)
+                  img.header__avatar(src="/" + loggedInUser.avatarUrl)
       else
         li
           a(href="/login") Login
