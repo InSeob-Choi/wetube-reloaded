@@ -27,6 +27,12 @@
 
 1. Heroku Git 활용하여 업로드하기
 - https://dashboard.heroku.com/apps/wetube-coco/deploy/heroku-git
+- Heroku 회원가입
 - 콘솔창에 Heroku CLI 설치하기
 - 콘솔창에 heroku login 입력하여 로그인하기 등 https://dashboard.heroku.com/apps/wetube-coco/deploy/heroku-git 에 나온대로 따라서 모두 하기
-- 
+- heroku logs --tail 터미널에 치기 (server나 heroku의 로그를 볼 수 있게 해주는 명령어임. 즉, 진행상태의 에러를 확인할 수 있게 해주는 요긴한 기능임!)
+- heroku는 기본적으로 "npm start"를 실행함.
+- Mongo DB Atlas 회원가입 및 로그인
+- DB를 free(무료) 버전으로 생성한 뒤, 생성된 DB주소를 Heroku의 Config Vars에 연결시켜 두기
+- 🚨 반드시 Add a connection IP address는 Allow Access from Anywhere로 설정해서 진행하기!!
+- init.js의 PORT에 Heroku가 자유자재로 PORT를 지정할 수 있게 해주기. const PORT = process.env.PORT || 4000; 당연히 수정한 뒤에 커밋한 뒤, heroku에도 push해야 겠지?

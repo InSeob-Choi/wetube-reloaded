@@ -35,22 +35,32 @@ app.use(
   
   app.use(flash());
   app.use(localsMiddleware);
-  
-  app.use((req, res, next) => {
-    res.header("Cross-Origin-Resource-Policy", "cross-origin");
-    res.header("Cross-Origin-Opener-Policy", "same-origin");
-    res.header("Cross-Origin-Embedder-Policy", "require-corp");
-    next();
-  });
 
+  /* 그런데.. 이게 없어도 통신이 잘 되네... 왜 그런지 모르겠어... 원래 안 됐었는데
+  import cors from "cors"; // 🚨 SOP 외에 CORS가 동작하도록 다음의 설정을 해줌.
   
-  app.use("/uploads", express.static("uploads"));
-  app.use("/static", express.static("assets"));
-  app.use("/public", express.static("node_modules/@ffmpeg/core/dist"));
+  let corsOption = {
+  origin: 'https://wetube-coco.s3.amazonaws.com', // 허락해주길 요청하는 주소
+  credentials: true // true로 하면 설정한 내용을 response 헤더에 추가 해줌
+  }
   
-  app.use("/", rootRouter);
-  app.use("/users", userRouter);
-  app.use("/videos", videoRouter);
-  app.use("/api", apiRouter);
-  
+  app.use(cors(corsOption));
+  */
+
+  // app.use((req, res, next) => { // 🚨 로컬호스트에서만 할 때는 CORS 방안으로 통했는데, aws 사용한 뒤에는 안됨. 그래서 'cors'를 설치하여 적용함.
+  //   res.header("Cross-Origin-Resource-Policy", "cross-origin");
+  //   res.header("Cross-Origin-Opener-Policy", "same-origin");
+  //   res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  //   next();
+// });
+
+app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("assets"));
+app.use("/public", express.static("node_modules/@ffmpeg/core/dist"));
+
+app.use("/", rootRouter);
+app.use("/users", userRouter);
+app.use("/videos", videoRouter);
+app.use("/api", apiRouter);
+
 export default app;
